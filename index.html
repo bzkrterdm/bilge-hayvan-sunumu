@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minik Kalpler ve Sevimli Dostlarımız</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            background-color: #f0fdf4;
+            color: #166534;
+            overflow: hidden;
+        }
+
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Görsel Stilleri */
+        .slide-image {
+            max-width: 80%;
+            max-height: 50vh;
+            /* Ekranın yarısını kaplasın */
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            object-fit: contain;
+            /* Görsel oranını koru */
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 10px 0;
+            color: #15803d;
+        }
+
+        p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            line-height: 1.4;
+            margin-top: 5px;
+        }
+
+        /* Navigasyon Butonları */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            background-color: #22c55e;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #16a34a;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:disabled {
+            background-color: #a7f3d0;
+            cursor: not-allowed;
+        }
+
+        /* Arka Plan Renkleri ve Gizleme */
+        .bg-1 {
+            background-color: #dcfce7;
+        }
+
+        .bg-2 {
+            background-color: #fef9c3;
+        }
+
+        .bg-3 {
+            background-color: #dbeafe;
+        }
+
+        .bg-4 {
+            background-color: #fee2e2;
+        }
+
+        .bg-5 {
+            background-color: #f3e8ff;
+        }
+
+        .bg-6 {
+            background-color: #ffedd5;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="slide1" class="slide bg-1">
+        <img src="step1.png" alt="Merhaba Arkadaşlar" class="slide-image">
+        <h1>Merhaba Arkadaşlar! 👋</h1>
+        <p>Bugün size en sevimli dostlarımızı, yani hayvanları anlatacağım!</p>
+    </div>
+
+    <div id="slide2" class="slide bg-2 hidden">
+        <img src="step2.png" alt="Onlar Bize Emanet" class="slide-image">
+        <h1>Onlar Bize Emanet ✨</h1>
+        <p>Hayvanlar konuşamazlar ama hissederler. Onlar Allah’ın dilsiz kullarıdır, bize sevgi getiren minik
+            arkadaşlardır.</p>
+    </div>
+
+    <div id="slide3" class="slide bg-3 hidden">
+        <img src="step3.png" alt="Su ve Yemek" class="slide-image">
+        <h1>Karnımız Acıktığında... 🥣💧</h1>
+        <p>Bizim gibi onlar da susar ve acıkır. Bir kap su, bir kap mama onları çok mutlu eder!</p>
+    </div>
+
+    <div id="slide4" class="slide bg-4 hidden">
+        <img src="step4.png" alt="Yumuşacık Dokunuş" class="slide-image">
+        <h1>Yumuşacık Dokunuş 🥰</h1>
+        <p>Onlara sevgiyle dokunmalıyız. Canlarını yakmadan, yavaşça okşayarak "Seni seviyorum" diyebiliriz.</p>
+    </div>
+
+    <div id="slide5" class="slide bg-5 hidden">
+        <img src="step5.png" alt="Onlar Bizim Dostumuz" class="slide-image">
+        <h1>Onlar Bizim Dostumuz 🛡️</h1>
+        <p>Hayvanları korkutmamalıyız. Onlara nazik davranmalıyız çünkü biz kocaman yürekli çocuklarız!</p>
+    </div>
+
+    <div id="slide6" class="slide bg-6 hidden">
+        <img src="step6.png" alt="Hep Beraber Mutluyuz" class="slide-image">
+        <h1>Hep Beraber Mutluyuz! 🐾🌈</h1>
+        <p>Hayvanları çok sevelim, onları her zaman koruyalım. Dinlediğiniz için teşekkürler!</p>
+    </div>
+
+    <div class="nav-buttons">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Geri</button>
+        <button id="nextBtn" onclick="changeSlide(1)">İleri</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            // Mevcut slaytı gizle
+            document.getElementById(`slide${currentSlide}`).classList.add('hidden');
+
+            // Slayt numarasını güncelle
+            currentSlide += direction;
+
+            // Buton durumlarını kontrol et (döngüyü kapatıp başa/sona sabitlemek 3 yaş için daha iyi)
+            if (currentSlide === 1) {
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.disabled = false;
+            }
+
+            if (currentSlide === totalSlides) {
+                nextBtn.innerText = "Baştan Başla"; // Son slaytta buton metnini değiştir
+            } else {
+                nextBtn.innerText = "İleri";
+            }
+
+            // Eğer son slayttan sonra ileri basılırsa başa dön
+            if (currentSlide > totalSlides) {
+                currentSlide = 1;
+                prevBtn.disabled = true;
+                nextBtn.innerText = "İleri";
+            }
+
+            // Yeni slaytı göster
+            document.getElementById(`slide${currentSlide}`).classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
